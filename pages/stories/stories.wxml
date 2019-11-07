@@ -8,6 +8,6 @@
 <view class="card-product" wx:for="{{stories}}"wx:for-item="item">
   <view class="card-product-infos">
     <view class="h2" >{{item.name}}</view>
-    <view class="p">{{item.desc}}</view>
+    <view class="p">{{item.text}}</view>
   </view>
 </view>

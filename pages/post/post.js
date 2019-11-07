@@ -13,19 +13,34 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+    console.log(options)
 
   },
 
   formSubmit(event){
     console.log(event)
     let story = event.detail.value
-    app.globalData.stories.unshift(story)
-    wx.navigateBack()
-    wx.showToast({
-      title:'Success',
-      icon: 'success'
+
+    wx.request({
+      url:
+  'https://fml.shanghaiwogeng.com/api/v1/stories',
+      data:story,
+      method:'POST',
+      success:this.submitSuccess
     })
-    },
+  },
+
+    submitSuccess(res){
+      console.log(res)
+      if (res.statusCode === 201) {
+       wx.navigateBack()
+       wx.showToast({
+        title: 'Success',
+        icon: 'success'
+        })
+        }
+     
+     },
 
   /**
    * Lifecycle function--Called when page is initially rendered
